@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqbm3a2wfrubb"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_cnyrm"]
+[ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_q0b1s"]
+[ext_resource type="PackedScene" uid="uid://brapyaebwmyyq" path="res://gun.tscn" id="3_pantt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4gev7"]
+radius = 43.0
+height = 120.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yas22"]
+radius = 47.0
+height = 136.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_30b6h"]
+bg_color = Color(0.22361, 0.0308275, 0.0136073, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii0ca"]
+bg_color = Color(0.883735, 0.10235, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_cnyrm")
+
+[node name="HappyBoo" parent="." instance=ExtResource("1_q0b1s")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -39)
+shape = SubResource("CapsuleShape2D_4gev7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Gun" parent="." instance=ExtResource("3_pantt")]
+position = Vector2(23, -25)
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-1, -39)
+shape = SubResource("CapsuleShape2D_yas22")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -80.0
+offset_top = -156.0
+offset_right = 80.0
+offset_bottom = -129.0
+theme_override_styles/background = SubResource("StyleBoxFlat_30b6h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ii0ca")
+value = 100.0
+show_percentage = false
