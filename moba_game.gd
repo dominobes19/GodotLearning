@@ -1,11 +1,27 @@
 extends Node2D
 
+@onready var etimer = get_node("Player/DashTimer")
+@onready var ebar = get_node("Camera/EBar")
+
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+
+
+func _physics_process(delta):
+	ebar.value = etimer.time_left
+
 
 func spawn_mob():
 	var new_mob = preload("res://mobs.tscn").instantiate()
 	%PathFollow2D.progress_ratio = randf()
 	new_mob.global_position = %PathFollow2D.global_position
 	add_child(new_mob)
+
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
 
 
 func _on_mob_spawn_timer_timeout():

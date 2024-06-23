@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmsbyo7a84627"]
+
+[ext_resource type="Script" path="res://Camera.gd" id="1_pinjy"]
+
+[node name="Camera" type="Node2D"]
+script = ExtResource("1_pinjy")
+
+[node name="Camera2D" type="Camera2D" parent="."]

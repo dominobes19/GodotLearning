@@ -1,0 +1,8 @@
+res://player.tscn
+res://camera.tscn
+res://moba_game.tscn
+res://moba_game.gd
+res://player.gd
+res://gun.gd
+res://mobs.gd
+res://Camera.gd
